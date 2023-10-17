@@ -1,0 +1,14 @@
+# IDE-specific files (e.g., PyCharm, Visual Studio Code)
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+
+# Log files
+*.log
+
+# Compiled binary files (if any)
+/bin/
+/include/
+/lib/
