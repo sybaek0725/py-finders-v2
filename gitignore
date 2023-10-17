@@ -12,3 +12,9 @@
 /bin/
 /include/
 /lib/
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
