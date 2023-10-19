@@ -8,56 +8,56 @@ import time
 # 사이트 리스트
 sites = [
     # 1. Findchips : 🟢 검색
-    # {
-    #     'name': 'findchips',
-    #     'url': 'https://www.findchips.com/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[2]/div/div/div[1]/div/form/span/input',
-    #     },
-    #     'login': None
-    # },
+    {
+        'name': 'findchips',
+        'url': 'https://www.findchips.com/',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[2]/div/div/div[1]/div/form/span/input',
+        },
+        'login': None
+    },
     # 2. Find IC : 🟢 검색
-    # {
-    #     'name': 'find-ic',
-    #     'url': 'https://www.findic.kr/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[4]/div[2]/form/input[1]',
-    #     },
-    #     'login': None
-    # },
+    {
+        'name': 'find-ic',
+        'url': 'https://www.findic.kr/',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[4]/div[2]/form/input[1]',
+        },
+        'login': None
+    },
     # 3. Partsner : 🟢 검색
-    # {
-    #     'name': 'partsner',
-    #     'url': 'http://www.partsner.com/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[2]/div[1]/div/ul/li[2]/input',
-    #     },
-    #     'login': None
-    # },
+    {
+        'name': 'partsner',
+        'url': 'http://www.partsner.com/',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[2]/div[1]/div/ul/li[2]/input',
+        },
+        'login': None
+    },
     # 4. Allparts (MICHAEL) : 🟢 검색, 🟢 로그인
-    # {
-    #     'name': 'allparts',
-    #     'url': 'https://www.allparts.co.kr/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[1]/div[3]/div/input',
-    #     },
-    #     'login': {  
-    #         'selector': [By.ID, By.ID],
-    #         'element': ['user_id', 'pswd'],
-    #     },
-    #     'user_info': {
-    #         'user_id': 'mworksk2',
-    #         'user_pw': 'tvp5150am1pbsr'
-    #     },
-    # },
+    {
+        'name': 'allparts',
+        'url': 'https://www.allparts.co.kr/',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[1]/div[3]/div/input',
+        },
+        'login': {  
+            'selector': [By.ID, By.ID],
+            'element': ['user_id', 'pswd'],
+        },
+        'user_info': {
+            'user_id': 'mworksk2',
+            'user_pw': 'tvp5150am1pbsr'
+        },
+    },
     # 5. Net Components : 🟢 검색, ❌ 로그인 (!외부 이슈: 계정 번호 없음)
     # {
     #     'name': 'net-components', 
@@ -114,63 +114,63 @@ sites = [
     #     },
     # },
     # 8. Digi Parts : 🟢 검색
-    # {
-    #     'name': 'digi-parts',
-    #     'url': 'https://www.digipart.com/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[1]/div/div[1]/form/div/div/input',
-    #     },
-    #     'login': None
-    # },
-    # # 9. HK Inventory : 🟢 검색
-    # {
-    #     'name': 'hk-inventory',
-    #     'url': 'https://www.hkinventory.com/',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[2]/table/tbody/tr[2]/td/div/table/tbody/tr/td[2]/div/table/tbody/tr[1]/td/div/table/tbody/tr[2]/td/div/table/tbody/tr/td/div[1]/center/div[1]/div[1]/form/div[1]/input[1]',
-    #     },
-    #     'login': None
-    # },
-    # 10. Microchip Direct : 🟢 검색, ❌ 로그인 (!내부 이슈: 로그인 버튼 선택 시, popover 노출 후, password 요소에서 에러 발생됨)
     {
-        'name': 'microchip-direct',
-        'url': 'https://www.microchipdirect.com/',
+        'name': 'digi-parts',
+        'url': 'https://www.digipart.com/',
         'entry': False,
         'search': {
             'selector': By.XPATH,
-            'element': '/html/body/div[8]/div/div[1]/div[2]/div/div/div/div[1]/nav[1]/ul[2]/div/div/div[1]/div/input',
+            'element': '/html/body/div[1]/div/div[1]/form/div/div/input',
         },
-        'login': {  
-            'selector': [By.ID, By.ID], 
-            'element': ['loginEmail', 'loginPassword'],
-        },
-        'user_info': {
-            'user_id': 'bmselec@bmselec.co.kr',
-            'user_pw': 'Tvp5150am1!'
-        },
+        'login': None
     },
-    # 11. TI STORE : 🟢 검색, 🟢 로그인
+    # # 9. HK Inventory : 🟢 검색
+    {
+        'name': 'hk-inventory',
+        'url': 'https://www.hkinventory.com/',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[2]/table/tbody/tr[2]/td/div/table/tbody/tr/td[2]/div/table/tbody/tr[1]/td/div/table/tbody/tr[2]/td/div/table/tbody/tr/td/div[1]/center/div[1]/div[1]/form/div[1]/input[1]',
+        },
+        'login': None
+    },
+    # 10. Microchip Direct : 🟢 검색, ❌ 로그인 (!내부 이슈: 로그인 버튼 선택 시, popover 노출 후, password 요소에서 에러 발생됨)
     # {
-    #     'name': 'ti-store',
-    #     'url': 'https://login.ti.com/as/authorization.oauth2?response_type=code&scope=openid%20email%20profile&client_id=DCIT_ALL_WWW-PROD&state=ASyLnI6G2yrRzK62u53IkdH9_T0&redirect_uri=https%3A%2F%2Fwww.ti.com%2Foidc%2Fredirect_uri%2F&nonce=EB0zAM0EHXE83JqVK1Bagm3Wa84cROtpvDQ23RP6LrY&response_mode=form_post',
+    #     'name': 'microchip-direct',
+    #     'url': 'https://www.microchipdirect.com/',
     #     'entry': False,
     #     'search': {
-    #         'selector': By.CSS_SELECTOR,
-    #         'element': 'div#searchboxheader input',
+    #         'selector': By.XPATH,
+    #         'element': '/html/body/div[8]/div/div[1]/div[2]/div/div/div/div[1]/nav[1]/ul[2]/div/div/div[1]/div/input',
     #     },
     #     'login': {  
-    #         'selector': [By.ID, By.XPATH], 
-    #         'element': ['username', '/html/body/main/div/div/div/form/div/div[2]/ti-password/input'],
+    #         'selector': [By.ID, By.ID], 
+    #         'element': ['loginEmail', 'loginPassword'],
     #     },
     #     'user_info': {
-    #         'user_id': 'INFO@OLIVE-EMS.COM',
-    #         'user_pw': 'Tvp5150am1!!'
+    #         'user_id': 'bmselec@bmselec.co.kr',
+    #         'user_pw': 'Tvp5150am1!'
     #     },
     # },
+    # 11. TI STORE : 🟢 검색, 🟢 로그인
+    {
+        'name': 'ti-store',
+        'url': 'https://login.ti.com/as/authorization.oauth2?response_type=code&scope=openid%20email%20profile&client_id=DCIT_ALL_WWW-PROD&state=ASyLnI6G2yrRzK62u53IkdH9_T0&redirect_uri=https%3A%2F%2Fwww.ti.com%2Foidc%2Fredirect_uri%2F&nonce=EB0zAM0EHXE83JqVK1Bagm3Wa84cROtpvDQ23RP6LrY&response_mode=form_post',
+        'entry': False,
+        'search': {
+            'selector': By.CSS_SELECTOR,
+            'element': 'div#searchboxheader input',
+        },
+        'login': {  
+            'selector': [By.ID, By.XPATH], 
+            'element': ['username', '/html/body/main/div/div/div/form/div/div[2]/ti-password/input'],
+        },
+        'user_info': {
+            'user_id': 'INFO@OLIVE-EMS.COM',
+            'user_pw': 'Tvp5150am1!!'
+        },
+    },
     ##### 수정전
     # 12. AD Web : ❌ 검색, ❌ 로그인 (!내부 이슈 : 아날로그 디바이스 쿠키 정책 하단 팝업이 노출, 해결 방법 확인 필요(검색은 팝업 노출된 상태에서 검색 결과 화면 이동 처리됨))
     # {
@@ -217,90 +217,90 @@ sites = [
             # 'user_pw': 'tvp5150am1'
     #     }
     # },
-    # # 15. Arrow : 🟢 검색, 🟢 로그인
-    # {
-    #     'name': 'arrow',
-    #     'url': 'https://www.arrow.com/ko-kr/login?gotoSplash=true&url=',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div[1]/header/div/div[1]/div[1]/div/div[1]/form/div/input[1]',
-    #     },
-    #     'login': {  
-    #         'selector': [By.XPATH, By.XPATH], 
-    #         'element': ['/html/body/div[1]/div[12]/div[3]/div/div/div/form/div[3]/input', '/html/body/div[1]/div[12]/div[3]/div/div/div/form/div[4]/input'],
-    #     },
-    #     'user_info': {
-    #         'user_id': 'mjang@microworks.co.kr',
-    #         'user_pw': 'Tvp5150am1pbsr!'
-    #     },
-    # },
+    # 15. Arrow : 🟢 검색, 🟢 로그인
+    {
+        'name': 'arrow',
+        'url': 'https://www.arrow.com/ko-kr/login?gotoSplash=true&url=',
+        'entry': False,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div[1]/header/div/div[1]/div[1]/div/div[1]/form/div/input[1]',
+        },
+        'login': {  
+            'selector': [By.ID, By.ID], 
+            'element': ['username', 'password'],
+        },
+        'user_info': {
+            'user_id': 'mjang@microworks.co.kr',
+            'user_pw': 'Tvp5150am1pbsr!'
+        },
+    },
     # 16. Element14 : 🟢 검색, 🟢 로그인
-    # {
-    #     'name': 'element14',
-    #     'url': 'https://kr.element14.com/webapp/wcs/stores/servlet/LogonForm?myAcctMain=1&catalogId=15001&storeId=10187&langId=-9&URL=https%3A%2F%2Fkr.element14.com%2F',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.ID,
-    #         'element': 'SimpleSearchForm_SearchTerm',
-    #     },
-    #     'login': {  
-    #         'entry': None,
-    #         'selector': [By.XPATH, By.XPATH], 
-    #         'element': ['/html/body/div[4]/div/main/div[1]/div[1]/form/div[2]/div[2]/div[4]/input', '/html/body/div[4]/div/main/div[1]/div[1]/form/div[2]/div[2]/div[7]/input'],
-    #     },
-    #     'user_info': {
-    #         'user_id': 'Steelan',
-    #         'user_pw': 'tvp5150am1'
-    #     },
-    # },
-    # # 17. Verical : 🟢 검색, 🟢 로그인
-    # {
-    #     'name': 'verical',
-    #     'url': 'https://www.verical.com/sign-in?return=%2F',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.ID,
-    #         'element': 'mat-input-1',
-    #     },
-    #     'login': {  
-    #         'selector': [By.XPATH, By.XPATH], 
-    #         'element': ['/html/body/app-root/mat-sidenav-container/mat-sidenav-content/div/sign-in-register-page/div/div/div/mat-tab-group/div/mat-tab-body[1]/div/div/div/sign-in-form/form/mat-form-field[1]/div/div[1]/div/input', '/html/body/app-root/mat-sidenav-container/mat-sidenav-content/div/sign-in-register-page/div/div/div/mat-tab-group/div/mat-tab-body[1]/div/div/div/sign-in-form/form/mat-form-field[2]/div/div[1]/div/input'],
-    #     },
-    #     'user_info': {
-    #         'user_id': 'mjang@microworks.co.kr',
-    #         'user_pw': 'Tvp5150am1pbsr!'
-    #     },
-    # },
-    # # 18. Chip One Stop : 🟢 검색, 🟢 로그인
-    # {
-    #     'name': 'chip-one-stop',
-    #     'url': 'https://www.chip1stop.com/KOR/ko/login',
-    #     'entry': False,
-    #     'search': {
-    #         'selector': By.ID,
-    #         'element': 'headerKeywordSearch',
-    #     },
-    #     'login': {  
-    #         'selector': [By.XPATH, By.XPATH], 
-    #         'element': ['/html/body/div[1]/main/div/div[1]/form/dl/dd[1]/input', '/html/body/div[1]/main/div/div[1]/form/dl/div/dd/input'],
-    #     },
-    #     'user_info': {
-    #         'user_id': 'mworksk',
-    #         'user_pw': 'mworksk123'
-    #     },
-    # },
+    {
+        'name': 'element14',
+        'url': 'https://kr.element14.com/webapp/wcs/stores/servlet/LogonForm?myAcctMain=1&catalogId=15001&storeId=10187&langId=-9&URL=https%3A%2F%2Fkr.element14.com%2F',
+        'entry': False,
+        'search': {
+            'selector': By.ID,
+            'element': 'SimpleSearchForm_SearchTerm',
+        },
+        'login': {  
+            'entry': None,
+            'selector': [By.XPATH, By.XPATH], 
+            'element': ['/html/body/div[4]/div/main/div[1]/div[1]/form/div[2]/div[2]/div[4]/input', '/html/body/div[4]/div/main/div[1]/div[1]/form/div[2]/div[2]/div[7]/input'],
+        },
+        'user_info': {
+            'user_id': 'Steelan',
+            'user_pw': 'tvp5150am1'
+        },
+    },
+    # 17. Verical : 🟢 검색, 🟢 로그인
+    {
+        'name': 'verical',
+        'url': 'https://www.verical.com/sign-in?return=%2F',
+        'entry': False,
+        'search': {
+            'selector': By.ID,
+            'element': 'mat-input-1',
+        },
+        'login': {  
+            'selector': [By.XPATH, By.XPATH], 
+            'element': ['/html/body/app-root/mat-sidenav-container/mat-sidenav-content/div/sign-in-register-page/div/div/div/mat-tab-group/div/mat-tab-body[1]/div/div/div/sign-in-form/form/mat-form-field[1]/div/div[1]/div/input', '/html/body/app-root/mat-sidenav-container/mat-sidenav-content/div/sign-in-register-page/div/div/div/mat-tab-group/div/mat-tab-body[1]/div/div/div/sign-in-form/form/mat-form-field[2]/div/div[1]/div/input'],
+        },
+        'user_info': {
+            'user_id': 'mjang@microworks.co.kr',
+            'user_pw': 'Tvp5150am1pbsr!'
+        },
+    },
+    # 18. Chip One Stop : 🟢 검색, 🟢 로그인
+    {
+        'name': 'chip-one-stop',
+        'url': 'https://www.chip1stop.com/KOR/ko/login',
+        'entry': False,
+        'search': {
+            'selector': By.ID,
+            'element': 'headerKeywordSearch',
+        },
+        'login': {  
+            'selector': [By.XPATH, By.XPATH], 
+            'element': ['/html/body/div[1]/main/div/div[1]/form/dl/dd[1]/input', '/html/body/div[1]/main/div/div[1]/form/dl/div/dd/input'],
+        },
+        'user_info': {
+            'user_id': 'mworksk',
+            'user_pw': 'mworksk123'
+        },
+    },
     # # 19. LCSC : 🟢 검색
-    # {
-    #     'name': 'lcsc',
-    #     'url': 'https://www.lcsc.com/',
-    #     'entry': True,
-    #     'search': {
-    #         'selector': By.XPATH,
-    #         'element': '/html/body/div/div/div/div/div[1]/div/div/div[2]/div[1]/div/div/div/div[1]/div[1]/div/div/div[1]/input',
-    #     },
-    #     'login': None
-    # },
+    {
+        'name': 'lcsc',
+        'url': 'https://www.lcsc.com/',
+        'entry': True,
+        'search': {
+            'selector': By.XPATH,
+            'element': '/html/body/div/div/div/div/div[1]/div/div/div[2]/div[1]/div/div/div/div[1]/div[1]/div/div/div[1]/input',
+        },
+        'login': None
+    },
     # 20. Trusted Parts : ❌ 검색 (!내부 이슈: 당신이 로봇이 아님을 확인하기 위한 필수 절차입니다. 화면 노출) 
     # {
     #     'name': 'trusted-parts',
@@ -320,8 +320,7 @@ print('🩵🩵🩵🩵🩵🩵🩵', len(sites))
 
 def search_and_login(driver, search_query, index):
     driver.get(sites[index]['url'])
-
-    print('entry', sites[index]['entry'])
+    time.sleep(5)
 
     if sites[index]['entry']:
         driver.find_element(By.CSS_SELECTOR, "div.v-card__title button").click()
@@ -347,15 +346,16 @@ def search_and_login(driver, search_query, index):
         if sites[index]['name'] == 'ti-store':
             driver.find_element(By.ID, 'nextbutton').click()
 
-        # login_box = driver.find_element(sites[index]['login']['selector'][1], sites[index]['login']['element'][1])
-        login_box = driver.find_element(By.ID, 'loginPassword')
+        login_box2 = driver.find_element(sites[index]['login']['selector'][1], sites[index]['login']['element'][1])
+
+        # 10. Microchip Direct 이슈: 로그인 버튼 선택 시, popover 노출 후, password 요소에서 에러 발생되는 현상 테스트 작업
+        # login_box = driver.find_element(By.ID, 'loginPassword')
         # wait = WebDriverWait(driver, 10)
         # wait.until(EC.presence_of_element_located((sites[index]['login']['selector'][1], sites[index]['login']['element'][1])))
         
-        # login_box.send_keys(sites[index]['user_info']['user_pw'])
-        time.sleep(10)
-        # login_box.send_keys(Keys.RETURN)
-        # time.sleep(8)
+        login_box2.send_keys(sites[index]['user_info']['user_pw'])
+        login_box2.send_keys(Keys.RETURN)
+        time.sleep(8)
 
         if sites[index]['name'] == 'allparts':
             wait = WebDriverWait(driver, 10)
@@ -373,16 +373,16 @@ def search_and_login(driver, search_query, index):
         driver.execute_script("window.open('', '_blank');")
         driver.switch_to.window(driver.window_handles[index + 1])
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option("detach", True)
-chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome(options=chrome_options)
-drivers.append(driver)
-
 while True:
     search_query = input("검색어를 입력하세요: ")
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("detach", True)
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--start-maximized")
+    driver = webdriver.Chrome(options=chrome_options)
+    drivers.append(driver)
 
     if search_query:
         for index in range(num_drivers):
