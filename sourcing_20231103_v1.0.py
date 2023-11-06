@@ -192,12 +192,12 @@ class WebAutomationApp(QMainWindow):
             check_box.stateChanged.connect(self.checkbox_state_changed)
 
         # 재 검색 시나리오 X
-        # self.search_button.clicked.connect(self.perform_search)
-        # self.search_input.returnPressed.connect(self.perform_search)
+        self.search_button.clicked.connect(self.perform_search)
+        self.search_input.returnPressed.connect(self.perform_search)
 
         # 재 검색 시나리오 O
-        self.search_button.clicked.connect(self.search_by_keyword)
-        self.search_input.returnPressed.connect(self.search_by_keyword) 
+        # self.search_button.clicked.connect(self.search_by_keyword)
+        # self.search_input.returnPressed.connect(self.search_by_keyword) 
 
     def checkbox_state_changed(self, state):
         checked_boxes = []  
@@ -206,59 +206,21 @@ class WebAutomationApp(QMainWindow):
             if check_box.isChecked():
                 checked_boxes.append(check_box.text())
 
-    # def perform_search(self):
-    #     search_query = self.search_input.text()
-    #     selected_sites = [] 
-
-    #     if len(search_query) < 4:
-    #         QMessageBox.critical(self, "오류", "검색어는 최소 4글자 이상이어야 합니다.")
-    #         return
-
-    #     if not any(site.isChecked() for site in self.check_boxes):
-    #         QMessageBox.critical(self, "오류", "적어도 하나의 사이트를 선택해야 합니다.")
-    #         return
-
-    #     if search_query.lower() == 'close': 
-    #         self.driver.quit()
-    #         self.driver = None
-    #     else:
-    #         if self.driver is None:
-    #             chrome_options = webdriver.ChromeOptions()
-    #             chrome_options.add_experimental_option("detach", True)
-    #             chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    #             chrome_options.add_argument("--disable-extensions")
-    #             chrome_options.add_argument("--start-maximized")
-    #             self.driver = webdriver.Chrome(options=chrome_options)
-
-    #             for index, site in enumerate(self.check_boxes):
-    #                 if site.isChecked():
-    #                     selected_sites.append(sites[index])
-
-    #             if search_query and selected_sites:
-    #                 for site in selected_sites:
-    #                     search_login_and_retry(site, search_query, self.driver)
-    #         else :
-    #             for index, site in enumerate(self.check_boxes):
-    #                 if site.isChecked():
-    #                     selected_site = sites[index]
-    #                     self.driver.switch_to.window(self.driver.window_handles[index])
-    #                     retry_search = self.driver.find_element(selected_site['retry'][0], selected_site['retry'][1])
-    #                     self.driver.execute_script("arguments[0].value = '';", retry_search)
-    #                     retry_search.send_keys(search_query)
-    #                     retry_search.send_keys(Keys.RETURN)
-
-    def search_by_keyword(self):
-        # while True:
+    def perform_search(self):
         search_query = self.search_input.text()
+        selected_sites = [] 
 
         if len(search_query) < 4:
             QMessageBox.critical(self, "오류", "검색어는 최소 4글자 이상이어야 합니다.")
             return
 
+        if not any(site.isChecked() for site in self.check_boxes):
+            QMessageBox.critical(self, "오류", "적어도 하나의 사이트를 선택해야 합니다.")
+            return
+
         if search_query.lower() == 'close': 
             self.driver.quit()
             self.driver = None
-            
         else:
             if self.driver is None:
                 chrome_options = webdriver.ChromeOptions()
@@ -268,18 +230,56 @@ class WebAutomationApp(QMainWindow):
                 chrome_options.add_argument("--start-maximized")
                 self.driver = webdriver.Chrome(options=chrome_options)
 
-                if search_query:
-                    for site in sites:
-                        search_login_and_retry(site, search_query, self.driver)                 
-            else:
-                length = len(sites)
+                for index, site in enumerate(self.check_boxes):
+                    if site.isChecked():
+                        selected_sites.append(sites[index])
+
+                if search_query and selected_sites:
+                    for site in selected_sites:
+                        search_login_and_retry(site, search_query, self.driver)
+            else :
+                for index, site in enumerate(self.check_boxes):
+                    if site.isChecked():
+                        selected_site = sites[index]
+                        self.driver.switch_to.window(self.driver.window_handles[index])
+                        retry_search = self.driver.find_element(selected_site['retry'][0], selected_site['retry'][1])
+                        self.driver.execute_script("arguments[0].value = '';", retry_search)
+                        retry_search.send_keys(search_query)
+                        retry_search.send_keys(Keys.RETURN)
+
+    # def search_by_keyword(self):
+    #     # while True:
+    #     search_query = self.search_input.text()
+
+    #     if len(search_query) < 4:
+    #         QMessageBox.critical(self, "오류", "검색어는 최소 4글자 이상이어야 합니다.")
+    #         return
+
+    #     if search_query.lower() == 'close': 
+    #         self.driver.quit()
+    #         self.driver = None
+            
+    #     else:
+    #         if self.driver is None:
+    #             chrome_options = webdriver.ChromeOptions()
+    #             chrome_options.add_experimental_option("detach", True)
+    #             chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    #             chrome_options.add_argument("--disable-extensions")
+    #             chrome_options.add_argument("--start-maximized")
+    #             self.driver = webdriver.Chrome(options=chrome_options)
+
+    #             if search_query:
+    #                 for site in sites:
+    #                     search_login_and_retry(site, search_query, self.driver)                 
+    #         else:
+    #             length = len(sites)
                 
-                for i in range(length):
-                    self.driver.switch_to.window(self.driver.window_handles[i])
-                    retry_search = self.driver.find_element(sites[i]['retry'][0], sites[i]['retry'][1])
-                    self.driver.execute_script("arguments[0].value = '';", retry_search)
-                    retry_search.send_keys(search_query)
-                    retry_search.send_keys(Keys.RETURN)
+    #             for i in range(length):
+    #                 self.driver.switch_to.window(self.driver.window_handles[i])
+    #                 retry_search = self.driver.find_element(sites[i]['retry'][0], sites[i]['retry'][1])
+    #                 self.driver.execute_script("arguments[0].value = '';", retry_search)
+    #                 retry_search.send_keys(search_query)
+    #                 retry_search.send_keys(Keys.RETURN)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
