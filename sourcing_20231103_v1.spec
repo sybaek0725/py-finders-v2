@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['mwk-sourcing-gui.py'],
+    ['sourcing_20231103_v1.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('image.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -21,7 +21,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='mwk-sourcing-gui',
+    name='sourcing_20231103_v1',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

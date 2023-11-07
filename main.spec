@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['mwk-sourcing.py'],
+    ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('image.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -21,7 +21,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='mwk-sourcing',
+    name='main',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
