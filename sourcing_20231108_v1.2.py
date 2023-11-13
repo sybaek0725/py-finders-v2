@@ -1,6 +1,5 @@
 import os
 import sys
-from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLineEdit, QPushButton, QCheckBox, QMessageBox, QLabel, QHBoxLayout, QGridLayout
 from selenium import webdriver
@@ -256,11 +255,13 @@ def func14(site, search_query, driver, driverWait, first_code):
         pw_box.send_keys(site['user_info']['user_pw'])
         pw_box.send_keys(Keys.RETURN)
 
+        time.sleep(20)
+
         # 로그인 실패 에외 처리
         if site['login']['element'][2]:
             driver.find_element(By.ID, 'submitLogin').submit()
 
-        time.sleep(15)
+        time.sleep(25)
 
         search_box = driver.find_element(site['search']['selector'], site['search']['element'])
         search_box.send_keys(search_query)
@@ -285,16 +286,8 @@ def func15(site, search_query, driver, driverWait, first_code):
         pw_box.send_keys(site['user_info']['user_pw'])
         pw_box.send_keys(Keys.RETURN)
 
-        # time.sleep(15)
+        time.sleep(18)
 
-        # system_error_popup = driver.find_element(By.XPATH, '/html/body/div[6]/div[2]/div/mat-dialog-container/caution-tape-modal/div/button')
-
-        # if system_error_popup: 
-        #     system_error_popup.click()
-
-        time.sleep(20)
-
-        # 검색 공통 로직
         search_box = driver.find_element(site['search']['selector'], site['search']['element'])
         search_box.send_keys(search_query)
         search_box.send_keys(Keys.RETURN)
@@ -320,7 +313,9 @@ def func16(site, search_query, driver, driverWait, first_code):
         time.sleep(20)
 
         # 로그인 실패 에외 처리
+        print('로그인 실패 ?????????', site['login']['element'][2])
         if site['login']['element'][2]:
+            print('ooooooooo', site['login']['element'][2])
             driver.find_element(site['login']['selector'][2], site['login']['element'][2]).click()
 
         # 검색 공통 로직
@@ -490,9 +485,6 @@ def func24(site, search_query, driver, driverWait, first_code):
         driver.execute_script("window.open('" + site['url'] + "', '_blank')")
         driver.switch_to.window(driver.window_handles[-1])
 
-    
-
-
 def search_login_and_retry(site, search_query, driver, first_code):
     max_retries = 2
     retry_count = 0
@@ -537,19 +529,6 @@ sites = [
         'login': None
     },
     {
-        'code': 3,
-        'name': 'partsner',
-        'url': 'http://www.partsner.com/',
-        'function': func3,
-        'entry': False,
-        'retry': [By.XPATH, '/html/body/div[1]/div[1]/div/ul[2]/li[2]/span/input'],
-        'search': {
-            'selector': By.XPATH,
-            'element': '/html/body/div[2]/div[1]/div/ul/li[2]/input',
-        },
-        'login': None
-    },
-    {
         'code': 4,
         'name': 'digi-parts',
         'url': 'https://www.digipart.com/',
@@ -590,7 +569,7 @@ sites = [
     },
     # {
     #     'code': 7,
-    #     'name': 'trusted-parts',
+    #     'name': 'trusted-parts : 로봇 탐지',
     #     'url': 'https://www.trustedparts.com/en/',
     #     'function': func7,
     #     'entry': False,
@@ -626,7 +605,7 @@ sites = [
         'url': 'https://login.ti.com/as/authorization.oauth2?response_type=code&scope=openid%20email%20profile&client_id=DCIT_ALL_WWW-PROD&state=ASyLnI6G2yrRzK62u53IkdH9_T0&redirect_uri=https%3A%2F%2Fwww.ti.com%2Foidc%2Fredirect_uri%2F&nonce=EB0zAM0EHXE83JqVK1Bagm3Wa84cROtpvDQ23RP6LrY&response_mode=form_post',
         'function': func9,
         'entry': False,
-        'retry': [By.XPATH, '/html/body/header/div[3]/div[2]/div[1]/div/div/div/div/div/div[1]/input'],
+        'retry': [By.CSS_SELECTOR, 'div#searchboxheader input'],
         'search': {
             'selector': By.CSS_SELECTOR,
             'element': 'div#searchboxheader input',
@@ -847,7 +826,7 @@ sites = [
         'url': 'https://www.maximintegrated.com/en/storefront/storefront.html',
         'function': func20,
         'entry': False,
-        'retry': [By.XPATH, '/html/body/div[5]/div[2]/div/div[2]/div[2]/div[2]/form/div/div[1]/input[2]'],
+        'retry': [By.XPATH, '/html/body/div[4]/div[2]/div/div[2]/div[2]/div[2]/form/div/div[1]/input[2]'],
         'search': {
             'selector': By.XPATH,
             'element': '/html/body/div[4]/div[2]/div/div[3]/div/div[1]/div[1]/div/form/div/div/input[2]',
@@ -862,85 +841,97 @@ sites = [
         },
     },
     {
-        'code': 21,
-        'name': 'digikey',
-        'url': 'https://www.digikey.kr/',
-        'function': func21,
+        'code': 3,
+        'name': 'partsner',
+        'url': 'http://www.partsner.com/',
+        'function': func3,
         'entry': False,
+        'retry': [By.XPATH, '/html/body/div[1]/div[1]/div/ul[2]/li[2]/span/input'],
         'search': {
             'selector': By.XPATH,
-            'element': '/html/body/header/div[1]/div[2]/div/div[2]/div[2]/input',
+            'element': '/html/body/div[2]/div[1]/div/ul/li[2]/input',
         },
-        'login': {  
-            'selector': ['', ''], 
-            'element': ['', ''],
-        },
-        'user_info': {
-            'user_id': 'info@olive-ems.com',
-            'user_pw': 'Tvp5150am1!!'
-        },
+        'login': None
     },
-    {
-        'code': 22,
-        'name': 'mouser',
-        'url': 'https://www.mouser.kr/MyAccount/MouserLogin',
-        'function': func22,
-        'entry': False,
-        'search': {
-            'selector': By.XPATH,
-            'element': '/html/body/header/form/div[1]/div/div/div[2]/div[1]/div[1]/div[1]/input[1]',
-        },
-        'login': {  
-            'selector': [By.XPATH, By.XPATH],
-            'element': ['/html/body/main/div/div/div/div[2]/div/div[1]/div[4]/form/div[1]/input', '/html/body/main/div/div/div/div[2]/div/div[1]/div[4]/form/div[2]/input']
-        },
-        'user_info': {
-            'user_id': 'Amypark',
-            'user_pw': 'tvp5150am1'
-        },
-    },
-    {
-        'code': 23,
-        'name': 'digikey',
-        'url': 'https://www.digikey.kr/',
-        'function': func23,
-        'entry': False,
-        'search': {
-            'selector': By.XPATH,
-            'element': '/html/body/header/div[1]/div[2]/div/div[2]/div[2]/input',
-        },
-        'login': {  
-            'selector': [By.XPATH, By.XPATH], 
-            'element': ['', ''],
-        },
-        'user_info': {
-            'user_id': 'ekim@microworks.co.kr',
-            'user_pw': 'tvp5150am1!!'
-        },
-    },
-    {
-        'code': 24,
-        'name': 'mouser',
-        'url': 'https://www.mouser.kr/MyAccount/MouserLogin',
-        'function': func24,
-        'entry': False,
-        'search': {
-            'selector': By.XPATH,
-            'element': '',
-        },
-        'login': {  
-            'selector': [By.XPATH, By.XPATH],
-            'element': ['', '']
-        },
-        'user_info': {
-            'user_id': 'oliveems',
-            'user_pw': 'Tvp5150am1!!'
-        },
-    },
+    # {
+    #     'code': 21,
+    #     'name': 'digikey-olive : 로봇 탐지',
+    #     'url': 'https://www.digikey.kr/',
+    #     'function': func21,
+    #     'entry': False,
+    #     'search': {
+    #         'selector': By.XPATH,
+    #         'element': '/html/body/header/div[1]/div[2]/div/div[2]/div[2]/input',
+    #     },
+    #     'login': {  
+    #         'selector': ['', ''], 
+    #         'element': ['', ''],
+    #     },
+    #     'user_info': {
+    #         'user_id': 'info@olive-ems.com',
+    #         'user_pw': 'Tvp5150am1!!'
+    #     },
+    # },
+    # {
+    #     'code': 22,
+    #     'name': 'mouser : 로봇 탐지',
+    #     'url': 'https://www.mouser.kr/MyAccount/MouserLogin',
+    #     'function': func22,
+    #     'entry': False,
+    #     'search': {
+    #         'selector': By.XPATH,
+    #         'element': '/html/body/header/form/div[1]/div/div/div[2]/div[1]/div[1]/div[1]/input[1]',
+    #     },
+    #     'login': {  
+    #         'selector': [By.XPATH, By.XPATH],
+    #         'element': ['/html/body/main/div/div/div/div[2]/div/div[1]/div[4]/form/div[1]/input', '/html/body/main/div/div/div/div[2]/div/div[1]/div[4]/form/div[2]/input']
+    #     },
+    #     'user_info': {
+    #         'user_id': 'Amypark',
+    #         'user_pw': 'tvp5150am1'
+    #     },
+    # },
+    # {
+    #     'code': 23,
+    #     'name': 'digikey : 로봇 탐지',
+    #     'url': 'https://www.digikey.kr/',
+    #     'function': func23,
+    #     'entry': False,
+    #     'search': {
+    #         'selector': By.XPATH,
+    #         'element': '/html/body/header/div[1]/div[2]/div/div[2]/div[2]/input',
+    #     },
+    #     'login': {  
+    #         'selector': [By.XPATH, By.XPATH], 
+    #         'element': ['', ''],
+    #     },
+    #     'user_info': {
+    #         'user_id': 'ekim@microworks.co.kr',
+    #         'user_pw': 'tvp5150am1!!'
+    #     },
+    # },
+    # {
+    #     'code': 24,
+    #     'name': 'mouser-olive : 로봇 탐지',
+    #     'url': 'https://www.mouser.kr/MyAccount/MouserLogin',
+    #     'function': func24,
+    #     'entry': False,
+    #     'search': {
+    #         'selector': By.XPATH,
+    #         'element': '',
+    #     },
+    #     'login': {  
+    #         'selector': [By.XPATH, By.XPATH],
+    #         'element': ['', '']
+    #     },
+    #     'user_info': {
+    #         'user_id': 'oliveems',
+    #         'user_pw': 'Tvp5150am1!!'
+    #     },
+    # },
 ]
 
 def resource_path(relative_path):
-    print('relative_path', relative_path)
     base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
@@ -962,6 +953,7 @@ class WebAutomationApp(QMainWindow):
 
         self.image_label = QLabel(self)
         pixmap = QPixmap(resource_path("logo.png"))
+        # pixmap.scaled(350, 100)
         self.image_label.setPixmap(pixmap)
         self.layout.addWidget(self.image_label)
 
@@ -972,6 +964,7 @@ class WebAutomationApp(QMainWindow):
         search_layout.addWidget(self.search_input)
 
         self.search_button = QPushButton("검색", self)
+        self.search_button.setFixedWidth(60) 
         search_layout.addWidget(self.search_button)
         self.layout.addLayout(search_layout)
 
@@ -990,6 +983,7 @@ class WebAutomationApp(QMainWindow):
         for index, site in enumerate(sites):
             check_box = QCheckBox(site['name'], self)
             self.check_boxes.append(check_box)
+
             row = index // num_cols
             col = index % num_cols
             self.checkbox_grid_layout.addWidget(check_box, row, col)
@@ -998,21 +992,32 @@ class WebAutomationApp(QMainWindow):
         self.layout.addLayout(self.checkbox_grid_layout)
 
         self.setStyleSheet("""
+            QWidget {
+                background-color: #ffffff;
+                color: #333333;
+            }
+            QLineEdit {
+                background-color:#f8f9fc;
+                padding-left: 5px;
+                color: #6e707e;
+                border: 1px solid #cccccc;
+            }
             QPushButton {
-                background-color: #007acc;
+                background-color: #4e73df;
                 color: white;
+                font-weight: 700;
                 border: 2px solid #007acc;
-                border-radius: 5px;
+                border-radius: 2px;
                 padding: 5px;
             }
             QPushButton:hover {
-                background-color: #0058a4;
-                border: 2px solid #0058a4;
+                background-color: #2e59d9;
+                border: 2px solid #2e59d9;
             }
-            QPushButton:pressed {
-                background-color: #004580;
-                border: 2px solid #004580;
-            }
+            # QPushButton:pressed {
+            #     background-color: #004580;
+            #     border: 2px solid #004580;
+            # }
         """)
 
         for check_box in self.check_boxes:
@@ -1040,15 +1045,14 @@ class WebAutomationApp(QMainWindow):
             check_box.setChecked(not check_all)
         self.select_all_button.setText("전체 선택" if check_all else "전체 해제")
 
-
     def perform_search(self):
         search_query = self.search_input.text()
 
         selected_sites = []
 
-        if len(search_query) < 4:
-            QMessageBox.critical(self, "오류", "검색어는 최소 4글자 이상이어야 합니다.")
-            return
+        # if len(search_query) < 4:
+        #     QMessageBox.critical(self, "오류", "검색어는 최소 4글자 이상이어야 합니다.")
+        #     return
 
         if not any(site.isChecked() for site in self.check_boxes):
             QMessageBox.critical(self, "오류", "적어도 하나의 사이트를 선택해야 합니다.")
@@ -1071,7 +1075,7 @@ class WebAutomationApp(QMainWindow):
                         selected_sites.append(sites[index])
 
                 if search_query and selected_sites:
-                    print('======= selected_sites[0] 확인 !!!!!!', selected_sites[0]['code'])
+                    
                     # 전체 버튼 disabled
                     self.select_all_button.setDisabled(True)
                     self.select_all_button.setStyleSheet("background-color: #CCCCCC; color: #999999; border: 1px solid #CCCCCC")
@@ -1083,16 +1087,31 @@ class WebAutomationApp(QMainWindow):
                         search_login_and_retry(site, search_query, self.driver, selected_sites[0]['code'])
             else :
                 selected_site = []
+                driverWait = WebDriverWait(self.driver, 10)
+
                 for index, site in enumerate(self.check_boxes):
                     if site.isChecked():
-                        selected_site = sites[index]
-                    if selected_site:
-                        for index, site in enumerate(selected_site):
+                        selected_site.append(sites[index])
+                    
+                if selected_site:
+                    
+                    for index, site in enumerate(selected_site):
+                        try:
                             self.driver.switch_to.window(self.driver.window_handles[index])
-                            retry_search = self.driver.find_element(selected_site['retry'][0], selected_site['retry'][1])
+                            print(f"💙💙💙💙💙 RETRY START ({site['code'], site['name']}: {site['retry'][0], site['retry'][1]})")
+                            retry_search = driverWait.until(EC.visibility_of_element_located((site['retry'][0], site['retry'][1])))
                             self.driver.execute_script("arguments[0].value = '';", retry_search)
                             retry_search.send_keys(search_query)
-                            retry_search.send_keys(Keys.RETURN)
+                            if site['name'] == 'net-comoponents':
+                                retry_search_btn = self.driver(By.XPATH, '/html/body/div[2]/div[2]/div[2]/div/div/div[1]/div[2]/div[3]/form/div[1]/div/div[2]/div/div[2]/div[1]/div/div[2]/a')
+                                retry_search_btn.click()
+                            else:
+                                retry_search.send_keys(Keys.RETURN)
+                        except (NoSuchElementException, AttributeError, WebDriverException) as e:
+                            print(f"❌❌❌❌❌ RETRY ERROR ({site['code'], site['name']}): {e}")
+                            if site['name'] == 'maxim-web':
+                                driverWait.until(EC.visibility_of_element_located((site['login']['selector'][3], site['login']['element'][3]))).click()
+
                                     
 if __name__ == '__main__':
     app = QApplication(sys.argv)
