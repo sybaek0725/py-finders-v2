@@ -28,5 +28,6 @@ $ pip3 freeze > requirements.txt
 저장된 패키지 파일 설치 명령어
 
 ```shell
-$ $ pip3 install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
+# py-finders-v2
