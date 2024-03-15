@@ -4,11 +4,11 @@
 
 ### 파이썬 설치 방법
 
-- Window / MacOS : [Python](https://www.python.org/) 에서 설치파일 다운로드 받은 뒤 설치
-- MacOS : ```brew install python3``` 
+-   Window / MacOS : [Python](https://www.python.org/) 에서 설치파일 다운로드 받은 뒤 설치
+-   MacOS : `brew install python3`
 
 ```shell
-$ pip3 install python 
+$ pip3 install python
 ```
 
 설치된 파이썬 버전 확인 명령어
@@ -30,5 +30,3 @@ $ pip3 freeze > requirements.txt
 ```shell
 $ pip3 install -r requirements.txt
 ```
-# py-finders-v2
-# py-finders-v2
